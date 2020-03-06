@@ -77,6 +77,7 @@ export const login = (user, pass) => {
       dispatch(setToken(data, user, pass));
       if (user === "admin1") {
         window.location.href = "/";
+        
       } else {
         window.location.href = "/home";
       }
@@ -147,7 +148,6 @@ export const checkUser = token => {
     });
     const data = response.data.access;
     dispatch(setCheckToken(data));
-    console.log(getState())
   };
 };
 

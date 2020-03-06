@@ -51,9 +51,9 @@ const reducer = (state = initState, action) => {
         emailData: emailData
       };
     case "CHECK":
+      
       return {
         ...state,
-        isLogged: true,
         token: action.payload
       };
 
@@ -64,11 +64,20 @@ const reducer = (state = initState, action) => {
         admin: false
       };
     case "USER_DATA":
-      return {
-        ...state,
-        userData: action.payload,
-        isLogged: true
-      };
+      if (action.payload.username === "admin1") {
+        return {
+          ...state,
+          userData: action.payload,
+          isLogged: false
+        };
+      } else {
+        return {
+          ...state,
+          userData: action.payload,
+          isLogged: true
+        }
+      }
+
     case "CHANGE_STATE":
       return {
         ...state,

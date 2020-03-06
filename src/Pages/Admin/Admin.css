@@ -82,6 +82,19 @@
   direction: rtl;
 }
 
+@media (max-width: 500px) {
+  .admin .cat-edit > div {
+    margin: 3px;
+  }
+}
+
+@media (max-width: 500px) {
+  .admin .cat-edit > div p {
+    font-size: 12px;
+    margin: 0px 2px;
+  }
+}
+
 .admin .cat-edit > div:hover {
   background-color: #eee;
   cursor: pointer;
@@ -90,6 +103,12 @@
 .admin .cat-edit > div * {
   padding: 4px;
   margin: 0px 4px;
+}
+
+@media (max-width: 500px) {
+  .admin .cat-edit > div svg {
+    font-size: 12px;
+  }
 }
 
 .admin .cat-edit > div svg:hover {
