@@ -67,15 +67,14 @@ export const setDeleteItem = newData => {
 
 export const login = (user, pass) => {
   return async (dispatch, getState) => {
-    const response = await axios.post(`${BASE_URL}auth/jwt/create/`, {
+    const response = await axios.post(`${BASE_URL}api/token/`, {
       username: user,
       password: pass
     });
     try {
-      const data = response.data.access;
-      localStorage.setItem("token", data);
+      const data = response.data;
+      localStorage.setItem("refreshToken", data.refresh);
       dispatch(setToken(data, user, pass));
-      console.log(getState());
       if (user === "admin1") {
         window.location.href = "/";
       } else {
@@ -97,7 +96,7 @@ export const setToken = (data, name, password) => {
 
 export const logout = () => {
   return (dispatch, getState) => {
-    localStorage.removeItem("token");
+    localStorage.removeItem("refreshToken");
     localStorage.removeItem("cartsData");
     dispatch(removeLogged());
     window.location.href = "/";
@@ -123,7 +122,7 @@ export const getUserData = token => {
         dispatch(changeState());
       }
     } catch (err) {
-      console.log(err);
+      console.log(err)
     }
   };
 };
@@ -142,15 +141,20 @@ export const changeState = () => {
 };
 
 export const checkUser = token => {
-  return (dispatch, getState) => {
-    dispatch(setCheckToken(token));
+  return async (dispatch, getState) => {
+    const response = await axios.post(`${BASE_URL}api/token/refresh/`, {
+      refresh: token
+    });
+    const data = response.data.access;
+    dispatch(setCheckToken(data));
+    console.log(getState())
   };
 };
 
-export const setCheckToken = token => {
+export const setCheckToken = data => {
   return {
     type: "CHECK",
-    payload: token
+    payload: data
   };
 };
 
@@ -169,7 +173,7 @@ export const sendOrder = (carts, userName) => {
     try {
       alert("تم توصيل الأوردر بنجاح");
       localStorage.removeItem("cartsData");
-      dispatch(deleteAllCart())
+      dispatch(deleteAllCart());
     } catch (err) {
       alert("حدث خطأ");
     }
@@ -180,7 +184,7 @@ export const deleteAllCart = () => {
   return {
     type: "DELETE_ORDER"
   };
-}
+};
 
 export const getOrders = () => {
   return async (dispatch, getState) => {

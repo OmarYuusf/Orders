@@ -1,1 +1,1 @@
-export const BASE_URL = "http://fastorder.pythonanywhere.com/";
+export const BASE_URL = "https://fastorder.pythonanywhere.com/";

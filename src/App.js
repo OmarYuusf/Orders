@@ -11,9 +11,10 @@ import Products from "./Pages/users/Products/Products";
 import Carts from "./Pages/users/Carts/Carts";
 
 class App extends React.Component {
+
   async componentDidMount() {
-    if (localStorage.getItem("token")) {
-      this.props.checkUser(await localStorage.getItem("token"));
+    if (localStorage.getItem("refreshToken")) {
+      await this.props.checkUser(localStorage.getItem("refreshToken"));
       this.props.getUserData(this.props.token);
       this.props.getProducts();
 
@@ -31,6 +32,7 @@ class App extends React.Component {
     window.location.href = "/";
   };
   render() {
+
     return (
       <Switch>
         <div className="App">
