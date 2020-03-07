@@ -6,7 +6,6 @@ import Navbar from "./Pages/users/Navbar/Navbar";
 import { connect } from "react-redux";
 import * as Actions from "./Store/Actions";
 import { Switch, Route } from "react-router-dom";
-import adminOrders from "./Pages/Admin/adminOrders/adminOrders";
 import Products from "./Pages/users/Products/Products";
 import Carts from "./Pages/users/Carts/Carts";
 
@@ -49,10 +48,6 @@ class App extends React.Component {
           )}
 
           {this.props.admin === true ? <Admin /> : null}
-
-          {this.props.admin === true ? (
-            <Route exact path="/home/orders" component={adminOrders} />
-          ) : null}
         </div>
       </Switch>
     );
