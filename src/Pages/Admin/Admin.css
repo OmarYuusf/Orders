@@ -226,10 +226,22 @@
   border: 1px solid rgba(0, 0, 0, 0.15);
 }
 
+@media (max-width: 500px) {
+  .admin .orders > div table th {
+    font-size: 13px;
+  }
+}
+
 .admin .orders > div table tbody td {
   border: 1px solid rgba(0, 0, 0, 0.1);
   padding: 4px;
   text-align: center;
+}
+
+@media (max-width: 500px) {
+  .admin .orders > div table tbody td {
+    font-size: 12px;
+  }
 }
 
 .admin .orders > div .buttons button {

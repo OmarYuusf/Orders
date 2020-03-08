@@ -13,7 +13,7 @@ class Carts extends Component {
               <tr>
                 <th>الاسم</th>
                 <th>السعر</th>
-                <th>العدد</th>
+                <th>الوزن</th>
                 <th>السعر الكلي</th>
                 <th>التعديل</th>
               </tr>

@@ -77,7 +77,6 @@ export const login = (user, pass) => {
       dispatch(setToken(data, user, pass));
       if (user === "admin1") {
         window.location.href = "/";
-        
       } else {
         window.location.href = "/home";
       }
@@ -117,13 +116,13 @@ export const getUserData = token => {
     });
     try {
       const { data } = response;
-      dispatch(setDataUser(data));
-
       if (data.username === "admin1") {
-        dispatch(changeState());
+        dispatch(changeState(data));
+      } else {
+        dispatch(setDataUser(data));
       }
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
   };
 };
@@ -135,9 +134,10 @@ export const setDataUser = data => {
   };
 };
 
-export const changeState = () => {
+export const changeState = data => {
   return {
-    type: "CHANGE_STATE"
+    type: "CHANGE_STATE",
+    payload: data
   };
 };
 

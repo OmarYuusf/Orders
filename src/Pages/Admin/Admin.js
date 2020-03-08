@@ -76,7 +76,7 @@ class Admin extends React.Component {
                   <thead>
                     <tr>
                       <th>الصنف</th>
-                      <th>العدد</th>
+                      <th>الوزن</th>
                       <th>السعر</th>
                       <th>السعر الكلي</th>
                     </tr>
