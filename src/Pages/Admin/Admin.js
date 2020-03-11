@@ -20,6 +20,12 @@ class Admin extends React.Component {
       [e.target.name]: e.target.value
     });
   };
+
+  _handleKeyDown = e => {
+    if (e.key === "Enter") {
+      this.props.addProduct(this.state);
+    }
+  };
   render() {
     return (
       <div className="admin">
@@ -37,7 +43,10 @@ class Admin extends React.Component {
               <div className="cats" key={Math.random()}>
                 <p className="name">{items.item}</p>
                 <p className="price">{items.price}</p>
-                <FontAwesomeIcon icon={faTrashAlt} onClick={() => this.props.deleteProduct(items.id)}/>
+                <FontAwesomeIcon
+                  icon={faTrashAlt}
+                  onClick={() => this.props.deleteProduct(items.id)}
+                />
               </div>
             );
           })}
@@ -51,6 +60,7 @@ class Admin extends React.Component {
               name="item"
               value={this.state.item}
               onChange={e => this.handleChange(e)}
+              onKeyDown={e => this._handleKeyDown(e)}
             />
             <input
               type="number"
@@ -58,8 +68,11 @@ class Admin extends React.Component {
               name="price"
               value={this.state.price}
               onChange={e => this.handleChange(e)}
+              onKeyDown={e => this._handleKeyDown(e)}
             />
-            <button onClick={() => this.props.addProduct(this.state)}>اضافة</button>
+            <button onClick={() => this.props.addProduct(this.state)}>
+              اضافة
+            </button>
           </div>
         </div>
 
