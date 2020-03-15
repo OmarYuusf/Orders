@@ -24,14 +24,16 @@ export const getProductsLast = data => {
 
 export const newChange = (item, value) => {
   return (dispatch, getState) => {
-    item.count = parseInt(value.target.value);
+    item.count = parseFloat(value.target.value);
   };
 };
 
 export const addToList = item => {
   return (dispatch, getState) => {
+    console.log(item);
     dispatch(setToItem(item));
     const data = getState().carts;
+    
     localStorage.setItem("cartsData", JSON.stringify(data));
   };
 };
